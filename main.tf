@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
   name = "${var.vpc_name}"
   cidr = "${var.vpc_cidr}"
@@ -44,7 +44,7 @@ resource "aws_instance" "proxy" {
   subnet_id              = "${module.vpc.public_subnets[0]}"
   key_name               = "${var.ssh_key_name}"
 
-  tags {
+  tags = {
     Name = "${var.proxy_server_name}"
   }
 }
